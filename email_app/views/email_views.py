@@ -1,16 +1,12 @@
 import json
 from datetime import date
-from json import dumps
+
 from django.db.models import Q
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.template.loader import render_to_string
-from django.urls import reverse_lazy
-from django.utils.html import strip_tags
+
 from django.utils.timezone import now
 from django.views import View
 from django.views.generic import FormView, ListView, UpdateView, DetailView, DeleteView, TemplateView
-from bs4 import BeautifulSoup
 
 from core.models import Country, State, City
 from email_app.forms import EmailForm

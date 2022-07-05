@@ -6,7 +6,6 @@ from datetime import datetime
 
 from core.models import BaseModel
 from core.models import Country, State, City
-import secrets
 
 
 class User(AbstractUser):
@@ -97,36 +96,3 @@ class ScheduleContent(BaseModel):
     subject = models.CharField(max_length=254, null=True, blank=True)
     schedule = models.CharField(max_length=254, null=True, blank=True)
 
-# def default_filter():
-#     return [
-#         {
-#             "op": "",
-#             "column": "age",
-#             "eql": "is",
-#             "value": "18"
-#         },
-#         {
-#             "op": "OR",
-#             "column": "country",
-#             "eql": "is",
-#             "value": ["bangladesh"]
-#         },
-#         {
-#             "op": "AND",
-#             "column": "state",
-#             "eql": "is",
-#             "value": ["dhaka", "chattagram"]
-#         },
-#         {
-#             "op": "AND",
-#             "column": "state",
-#             "eql": "is",
-#             "value": ["dhaka", "chattagram"]
-#         },
-#
-#     ]
-# class YourModel(models.Model):
-#     key = models.CharField(
-#         _("Key for email tracking"), max_length=255, default=secrets.token_hex(10))
-#     seen_at = models.DateTimeField(null=True, blank=True)
-#     request = models.TextField(null=True, blank=True)

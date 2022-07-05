@@ -1,8 +1,6 @@
-import json
 from datetime import date
 
 from django.db.models import Q
-from django.http import HttpResponse, request
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.timezone import now

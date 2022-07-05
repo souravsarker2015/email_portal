@@ -1,10 +1,8 @@
 import json
-from json import dumps
 
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
-from django.views.generic import ListView, DetailView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, DeleteView
 
 from core.models import Country, State, City
 from email_app.models import Email, Recipient, Filter
