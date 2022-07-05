@@ -1,5 +1,4 @@
 import uuid
-from importlib.resources import _
 
 from django.contrib.auth.models import AbstractUser
 from django.db import models
@@ -39,10 +38,6 @@ class Email(BaseModel):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name="+")
     subject = models.CharField(max_length=500, blank=True, null=True)
     email_body = models.TextField(blank=True, null=True)
-    key = models.CharField(
-        _("Key for email tracking"), max_length=255, default=secrets.token_hex(10))
-    seen_at = models.DateTimeField(null=True, blank=True)
-    request = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.subject
@@ -59,7 +54,6 @@ class EmailRecipient(BaseModel):
 
     def __str__(self):
         return str(self.id)
-
 
 
 class History(BaseModel):
@@ -136,4 +130,3 @@ class ScheduleContent(BaseModel):
 #         _("Key for email tracking"), max_length=255, default=secrets.token_hex(10))
 #     seen_at = models.DateTimeField(null=True, blank=True)
 #     request = models.TextField(null=True, blank=True)
-
