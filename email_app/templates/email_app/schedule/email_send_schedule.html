@@ -1,0 +1,145 @@
+{% extends 'email_app/base/base.html' %}
+{% block title %}
+    <title>Email Send with schedule</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container ">
+        <h3>Send Email with schedule</h3>
+        <hr>
+        <div class="shadow p-5 mt-2">
+            <div class="d-flex justify-content-around filter_div">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radio1_email_address"
+                           value="option1" onclick="location.href='{% url 'email-send-email-address' %}'">
+                    <label class="form-check-label" for="radio1_email_address">Email Address</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                           value="option2" onclick="location.href='{% url 'email-send-filter' %}'">
+                    <label class="form-check-label" for="inlineRadio2">Filter</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                           value="option2" onclick="location.href='{% url 'email-send-recipient' %}'" >
+                    <label class="form-check-label" for="inlineRadio2">Recipients</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4"
+                           value="option2" onclick="location.href='{% url 'mail-schedule' %}'" checked>
+                    <label class="form-check-label" for="inlineRadio4">Schedule Mail</label>
+                </div>
+            </div>
+
+            <form action="" method="post" class=" p-5 mt-1">
+                {% csrf_token %}
+                <div class="">
+                    <p>Recipients</p>
+                    <select class="js-example-basic-multiple" multiple="multiple"
+                            style="width:100%;height: 30px" name="recipients">
+                        {% for r in recipients %}
+                            <option value="{{ r.email_address }}"
+                            >{{ r.email_address }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group mt-3">
+                    <p>Subject</p>
+                    <select class="js-example-basic-single" name="subject" style="width:100%;height: 30px">
+                        {#                    <option disabled selected value>select subject</option>#}
+                        {% for email in emails %}
+                            <option value="{{ email.subject }}"
+                            >{{ email.subject }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group mt-3">
+                    <p>Select Schedule</p>
+                    <select class="js-example-basic-single" name="schedule" style="width:100%;height: 30px">
+                        {#                    <option disabled selected value>select subject</option>#}
+                        {% for schedule in schedules %}
+                            <option value="{{ schedule.date_time }}"
+                            >{{ schedule.schedule_title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block ">Submit</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        function email_address_input() {
+            let email_address_input = document.getElementById("email_address_input");
+            email_address_input.style.cssText += ';display:block !important;'
+
+            let filter_input = document.getElementById("filter_input");
+            filter_input.style.cssText += ';display:none !important;';
+            let recipients_input = document.getElementById("recipients_input");
+            recipients_input.style.cssText += ';display:none !important;';
+            let email_input = document.getElementById("email_input");
+            email_input.style.cssText += ';display:none !important;';
+
+            {#$('[name="email_address_input_value"]').empty().trigger('change');#}
+        }
+
+        function filter_input() {
+            let filter_input = document.getElementById("filter_input");
+            filter_input.style.cssText += ';display:block !important;'
+
+            let email_address_input = document.getElementById("email_address_input");
+            email_address_input.style.cssText += ';display:none !important;';
+            let recipients_input = document.getElementById("recipients_input");
+            recipients_input.style.cssText += ';display:none !important;';
+            let email_input = document.getElementById("email_input");
+            email_input.style.cssText += ';display:none !important;';
+
+            {#$('[name="email_address_input_value"]').empty().trigger('change');#}
+        }
+
+        function recipients_input() {
+            let recipients_input = document.getElementById("recipients_input");
+            recipients_input.style.cssText += ';display:block !important;';
+
+            let email_address_input = document.getElementById("email_address_input");
+            email_address_input.style.cssText += ';display:none !important;';
+            let filter_input = document.getElementById("filter_input");
+            filter_input.style.cssText += ';display:none !important;';
+            let email_input = document.getElementById("email_input");
+            email_input.style.cssText += ';display:none !important;';
+        }
+
+        function email_input() {
+            let email_input = document.getElementById("email_input");
+            email_input.style.cssText += ';display:block !important;';
+
+            let recipients_input = document.getElementById("recipients_input");
+            recipients_input.style.cssText += ';display:none !important;';
+
+            let email_address_input = document.getElementById("email_address_input");
+            email_address_input.style.cssText += ';display:none !important;';
+
+            let filter_input = document.getElementById("filter_input");
+            filter_input.style.cssText += ';display:none !important;';
+        }
+
+        $(document).ready(function () {
+            $('.js-example-basic-single').select2();
+        });
+
+        $(document).ready(function () {
+            $('.js-example-basic-multiple').select2({
+                tags: true,
+                tokenSeparators: [',', ' ']
+            });
+        });
+
+    </script>
+
+
+{% endblock %}

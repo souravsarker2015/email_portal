@@ -1,0 +1,146 @@
+{% extends 'email_app/base/base.html' %}
+{% block title %}
+    <title>Email Adding Form</title>
+{% endblock %}
+{% block content %}
+    <div class="container">
+
+        <div class="row my-3">
+            <div class="col-sm-12 ">
+                <h3>Add Email</h3>
+                <hr>
+                <form action="" method="post" novalidate class="shadow p-5" id="email-create-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="subject_input">Subject :</label>
+                        <input name="subject" type="text" class="form-control" id="subject_input">
+                    </div>
+                    <div>
+
+                        <p>Body :</p>
+                        <div class="custom-control custom-switch toggle_" style="margin-left:865px;">
+                            <input type="checkbox" class="custom-control-input summer_code" id="summer_code_id">
+                            <label class="custom-control-label" for="summer_code_id">html</label>
+                        </div>
+                        <div id="summernote"></div>
+                    </div>
+                    <input type="hidden" name="summer_html_code" id="summer_">
+                    <input type="submit" class="btn btn-primary btn-user btn-block" value="Create Email">
+                    <br>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        $('#summernote').summernote({
+            placeholder: "",
+            tabsize: 4,
+            height: 220,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['codeview', 'help']]
+            ]
+        });
+
+        $(".summer_code").click(function () {
+            console.log($(".summer_code").is(":checked"));
+            if ($(".summer_code").is(":checked") === true) {
+                if ($(".codeview").length == 0) {
+                    $(".btn-codeview").trigger("click");
+                }
+            }
+            if ($(".summer_code").is(":checked") === false) {
+                if ($(".codeview").length == 1) {
+                    $(".btn-codeview").trigger("click");
+                }
+            }
+        })
+
+        /*if ($(".codeview").length == 0) {
+            $(".summer_code").click(function () {
+                $(".btn-codeview").trigger("click");
+            });
+        }*/
+
+
+
+        /*$(".summer_code").click(function () {
+            if ($(".codeview").length == 0) {
+                $(".btn-codeview").trigger("click");
+            }
+            if ($(".codeview").length == 1) {
+                $(".codeview").length = 0;
+                $(".summer_code").click(function () {
+                    $(".btn-codeview").trigger("click");
+                });
+            }
+        })*/
+        /*else {
+                $(".btn-codeview").trigger("click");
+            }*/
+
+        /*$(".summer_code").click(function () {
+            if ($(".codeview").length == 0) {
+                $(".btn-codeview").trigger("click");
+            }
+            else {
+                $(".btn-codeview").trigger("click");
+            }
+        })*/
+
+
+        $('#email-create-form').submit(function () {
+            let ht = $("#summernote").summernote("code");
+            let res = document.getElementById("summer_").value = `${ht}`
+            console.log(res)
+            {#$('#your-input').val($('#editor').html())#}
+        });
+
+        function getCode() {
+            let ht = $("#summernote").summernote("code");
+            document.getElementById("code_get").textContent = `${ht}`
+            console.log(ht)
+        }
+
+        /*function postCode(e) {
+            e.preventDefault()
+            $('#summernote').on('summernote.init', function () {
+                $('#summernote').summernote('codeview.activate');
+            }).summernote();
+
+            let markupStr = document.getElementById("textCode");
+            let z = markupStr.value
+            console.log(z)
+            $('#summernote').summernote('code', z);
+        }*/
+    </script>
+
+
+
+{% endblock %}
+
+$("#summer_code_id").closest(".toggle_").append(temp)
+
+
+{#function check_html() {#}
+{#            if ($(".codeview").length == 1) {#}
+{#                let temp = `#}
+{#                    <input type="checkbox" class="custom-control-input summer_code" id="summer_code_id" checked>#}
+{#                    <label class="custom-control-label" for="summer_code_id">html</label>#}
+{##}
+{#            `#}
+{#                $("#toggle_").append(temp);#}
+{#            }#}
+{#        }#}
+{##}
+{#        check_html();#}

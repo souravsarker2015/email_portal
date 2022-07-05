@@ -1,0 +1,50 @@
+[
+  {
+    "model": "core.Country",
+    "pk": 1,
+    "fields": {
+      "name": "United States",
+      "code": "US"
+    }
+  },
+  {
+    "model": "core.Country",
+    "pk": 2,
+    "fields": {
+      "name": "United Kingdom",
+      "code": "UK"
+    }
+  },
+  {
+    "model": "core.Country",
+    "pk": 3,
+    "fields": {
+      "name": "Canada",
+      "code": "CAD"
+    }
+  },
+  {
+    "model": "core.Country",
+    "pk": 4,
+    "fields": {
+      "name": "Spain",
+      "code": "ES"
+    }
+  },
+  {
+    "model": "core.Country",
+    "pk": 5,
+    "fields": {
+      "name": "Mexico",
+      "code": "MX"
+    }
+  },
+  {
+    "model": "core.Country",
+    "pk": 6,
+    "fields": {
+      "name": "Italy",
+      "code": "IT"
+    }
+  }
+]

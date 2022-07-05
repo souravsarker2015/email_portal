@@ -1,0 +1,18 @@
+{% extends 'email_app/base/base.html' %}
+
+{% block title %}
+    <title>Detail View</title>
+{% endblock %}
+{% block content %}
+    <div class="container mt-5">
+        <h1>Recipient Details</h1>
+        <ul class="list-group">
+            <li class="list-group-item"><p>Name : {{ recipient.name }}</p></li>
+            <li class="list-group-item"><p>Email : {{ recipient.email_address }}</p></li>
+            <li class="list-group-item"><p>Country : {{ recipient.country }}</p></li>
+            <li class="list-group-item"><p>State : {{ recipient.state }}</p></li>
+            <li class="list-group-item"><p>City : {{ recipient.city }}</p></li>
+            <li class="list-group-item"><p>Date of Birth : {{ recipient.dob }}</p></li>
+        </ul>
+    </div>
+{% endblock %}

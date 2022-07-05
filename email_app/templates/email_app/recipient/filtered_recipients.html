@@ -1,0 +1,94 @@
+{% extends 'email_app/base/base.html' %}
+{% block title %}
+    <title>Recipient List</title>
+{% endblock %}
+{% block content %}
+    <h3 class="">Recipients</h3>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Recipients Table
+            </h6>
+
+            <div>
+                <div class="dropdown ">
+                    <form action="{% url 'add-recipient-filter' %}" method="post" class="d-flex">
+                        {% csrf_token %}
+
+                        {#                        <label for="filters">Filters:</label>#}
+                        <select name="filters" id="filters" style="border: none;width: 200px;">
+                            {#                            <option disabled selected value>Select Filter</option>#}
+                            {#                            <option value="" onclick="location.href='{% url 'recipient-list' %}'">All Filters</option>#}
+                            {#                            {% for filter in filters %}#}
+                            <option value="{{ filter_.id }}" selected>{{ filter_}}</option>
+                            {#                            {% endfor %}#}
+                        </select>
+                        <br><br>
+                        <input type="submit" value="Submit" style="margin-left: 10px">
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Age</th>
+                        <th scope="col">Country</th>
+                        <th scope="col">State</th>
+                        <th scope="col">City</th>
+                        <th scope="col">Date of Birth</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for recipient in recipients %}
+                        <tr>
+                            <th><a class="text-decoration-none text-dark"
+                                   href="{% url 'recipient-details' recipient.id %}"
+                                   target="_blank">{{ forloop.counter }}</a></th>
+                            <td><a class="text-decoration-none text-dark"
+                                   href="{% url 'recipient-details' recipient.id %}"
+                                   target="_blank">{{ recipient.name }}</a></td>
+                            <td><a class="text-decoration-none text-dark"
+                                   href="{% url 'recipient-details' recipient.id %}"
+                                   target="_blank">{{ recipient.email_address }}</a></td>
+                            <td><a class="text-decoration-none text-dark"
+                                   href="{% url 'recipient-details' recipient.id %}"
+                                   target="_blank">{{ recipient.age }}</a></td>
+                            <td><a class="text-decoration-none text-dark"
+                                   href="{% url 'recipient-details' recipient.id %}"
+                                   target="_blank">{{ recipient.country }}</a></td>
+                            <td><a class="text-decoration-none text-dark"
+                                   href="{% url 'recipient-details' recipient.id %}"
+                                   target="_blank">{{ recipient.state }}</a></td>
+                            <td><a class="text-decoration-none text-dark"
+                                   href="{% url 'recipient-details' recipient.id %}"
+                                   target="_blank">{{ recipient.city }}</a></td>
+                            <td><a class="text-decoration-none text-dark"
+                                   href="{% url 'recipient-details' recipient.id %}"
+                                   target="_blank">{{ recipient.dob }}</a></td>
+                            <td><a href="{% url 'recipient-update' recipient.id %}" class="btn btn-warning">Edit</a>
+                            </td>
+                            <td><a href="{% url 'recipient-delete' recipient.id %}" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    {% block javascript %}
+
+
+    {% endblock %}
+{% endblock %}

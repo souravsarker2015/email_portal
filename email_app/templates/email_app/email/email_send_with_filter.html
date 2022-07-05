@@ -1,0 +1,181 @@
+{% extends 'email_app/base/base.html' %}
+{% block title %}
+    <title>Email Send</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container ">
+        <h3>Send Email</h3>
+        <hr>
+        <form action="" method="post" class="shadow p-5 mt-5">
+            {% csrf_token %}
+            <div class="d-flex justify-content-around filter_div mb-5">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radio1_email_address"
+                           value="option1" onclick="email_address_input();">
+                    <label class="form-check-label" for="radio1_email_address">Email Address</label>
+                </div>
+                <div class="email_address_input" id="email_address_input">
+                    <select class="js-example-basic-multiple" multiple="multiple"
+                            style="width:300px;height: 30px" name="email_address_input_value">
+                        <option value=""></option>
+                    </select>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                           value="option2" onclick="filter_input()">
+                    <label class="form-check-label" for="inlineRadio2">Filter</label>
+                </div>
+                <div class="filter_input" id="filter_input">
+                    <select class="js-example-basic-multiple" multiple="multiple"
+                            style="width:300px;height: 30px" name="filter_input_value">
+                        <option value=""></option>
+                    </select>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                           value="option2" onclick="recipients_input();">
+                    <label class="form-check-label" for="inlineRadio2">Recipients</label>
+                </div>
+                <div class="recipients_input" id="recipients_input">
+                    <select class="js-example-basic-multiple" multiple="multiple"
+                            style="width:300px;height: 30px" name="recipients_input_value">
+                        {% for r in recipients %}
+                            <option value="{{ r.email_address }}"
+                            >{{ r.email_address }}</option>
+                        {% endfor %}
+
+
+                    </select>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                           value="option2" onclick="email_input();">
+                    <label class="form-check-label" for="inlineRadio2">Email</label>
+                </div>
+                <div class="email_input" id="email_input">
+                    <select class="js-example-basic-single" name="email_input_value" style="width:300px;height: 30px">
+                        {% for email in emails %}
+                            <option value="{{ email.subject }}"
+                            >{{ email.subject }}</option>
+                        {% endfor %}
+                    </select>
+{#                    <select class="js-example-basic-multiple" multiple="multiple"#}
+{#                            style="width:300px;height: 30px" name="email_input_value">#}
+{#                        {% for email in emails %}#}
+{#                            <option value="{{ email.subject }}"#}
+{#                            >{{ email.subject }}</option>#}
+{#                        {% endfor %}#}
+{#                    </select>#}
+                </div>
+
+            </div>
+
+            {#            <button type="submit" class="btn btn-primary btn-block " style="margin-top:100px; ">Submit</button>#}
+
+        </form>
+    </div>
+
+    {% block javascript %}
+        <script>
+
+            function email_address_input() {
+                let email_address_input = document.getElementById("email_address_input");
+                email_address_input.style.cssText += ';display:block !important;'
+
+                let filter_input = document.getElementById("filter_input");
+                filter_input.style.cssText += ';display:none !important;';
+                let recipients_input = document.getElementById("recipients_input");
+                recipients_input.style.cssText += ';display:none !important;';
+                let email_input = document.getElementById("email_input");
+                email_input.style.cssText += ';display:none !important;';
+
+                {#$('[name="email_address_input_value"]').empty().trigger('change');#}
+
+            }
+
+
+            function filter_input() {
+                let filter_input = document.getElementById("filter_input");
+                filter_input.style.cssText += ';display:block !important;'
+
+                let email_address_input = document.getElementById("email_address_input");
+                email_address_input.style.cssText += ';display:none !important;';
+                let recipients_input = document.getElementById("recipients_input");
+                recipients_input.style.cssText += ';display:none !important;';
+                let email_input = document.getElementById("email_input");
+                email_input.style.cssText += ';display:none !important;';
+
+                {#$('[name="email_address_input_value"]').empty().trigger('change');#}
+
+            }
+
+            function recipients_input() {
+                let recipients_input = document.getElementById("recipients_input");
+                recipients_input.style.cssText += ';display:block !important;';
+
+                let email_address_input = document.getElementById("email_address_input");
+                email_address_input.style.cssText += ';display:none !important;';
+                let filter_input = document.getElementById("filter_input");
+                filter_input.style.cssText += ';display:none !important;';
+                let email_input = document.getElementById("email_input");
+                email_input.style.cssText += ';display:none !important;';
+
+
+            }
+
+            function email_input() {
+                let email_input = document.getElementById("email_input");
+                email_input.style.cssText += ';display:block !important;';
+
+                let recipients_input = document.getElementById("recipients_input");
+                recipients_input.style.cssText += ';display:none !important;';
+
+                let email_address_input = document.getElementById("email_address_input");
+                email_address_input.style.cssText += ';display:none !important;';
+
+                let filter_input = document.getElementById("filter_input");
+                filter_input.style.cssText += ';display:none !important;';
+
+
+            }
+
+            $(document).ready(function () {
+                $('.js-example-basic-single').select2();
+            });
+            $(document).ready(function () {
+                $('.js-example-basic-multiple').select2({
+                    tags: true,
+                    tokenSeparators: [',', ' ']
+                });
+            });
+
+        </script>
+
+
+    {% endblock %}
+
+{% endblock %}
+
+{#    <div class="container">#}
+{#        <form class="shadow p-5 mt-5" method="post">#}
+{#            {% csrf_token %}#}
+{#            <div class="form-group">#}
+{#                <label for="email">Email</label>#}
+{#                <input type="text" class="form-control" id="email" aria-describedby="emailHelp" name="email">#}
+{#            </div>#}
+{#            <div class="form-group">#}
+{#                <label for="subject">Subject</label>#}
+{#                <input type="text" class="form-control" id="subject" aria-describedby="emailHelp" name="subject">#}
+{#            </div>#}
+{#            <div class="form-group">#}
+{#                <label for="message">Body</label>#}
+{#                <textarea class="form-control" id="message" rows="5" name="body"></textarea>#}
+{#            </div>#}
+{##}
+{#            <button type="submit" class="btn btn-primary">Submit</button>#}
+{#        </form>#}
+{#    </div>#}

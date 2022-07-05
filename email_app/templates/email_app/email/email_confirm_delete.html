@@ -1,0 +1,14 @@
+{% extends 'email_app/base/base.html' %}
+{% block title %}
+    <title>Delete Item</title>
+{% endblock %}
+{% block content %}
+    <div class="container mt-5">
+        <form method="post">
+            {% csrf_token %}
+            <p>Are you sure you want to delete  <strong class="">{{ object }}</strong> ?</p>
+            <input type="submit" class="btn btn-danger" value="Delete">
+        </form>
+    </div>
+
+{% endblock %}

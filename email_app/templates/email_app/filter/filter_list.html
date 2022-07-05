@@ -1,0 +1,97 @@
+{% extends 'email_app/base/base.html' %}
+{% block title %}
+    <title>Filter List</title>
+{% endblock %}
+{% block content %}
+    <h3 class="">Filters</h3>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Filters Table </h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Content</th>
+                        <th scope="col">Created By</th>
+                        <th scope="col">Created</th>
+                        {#                        <th scope="col">Edit</th>#}
+                        <th scope="col">Delete</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for filter in filters %}
+                        <tr>
+                            <th><a class="text-decoration-none text-dark" href="{% url 'filter-details' filter.id %}"
+                                   target="_blank">{{ forloop.counter }}</a></th>
+                            <td><a class="text-decoration-none text-dark" href="{% url 'filter-details' filter.id %}"
+                                   target="_blank">{{ filter.title }}</a></td>
+                            <td><a class="text-decoration-none text-dark" href="{% url 'filter-details' filter.id %}"
+                                   target="_blank">
+                                {{ filter.content }}
+                                {#                                {% if filter.content.age.value is not None %}#}
+                                {#                                    {{ filter.content.age.col }} {{ filter.content.age.eql }}#}
+                                {#                                    {{ filter.content.age.value }}#}
+                                {#                                {% endif %}#}
+                                {#                                {% if filter.content.country.value is not None %}#}
+                                {#                                    {{ filter.content.country.op }} {{ filter.content.country.col }}#}
+                                {#                                    {{ filter.content.country.eql }}#}
+                                {#                                    {% for foo in filter.content.country.value %}#}
+                                {#                                        {{ foo }}#}
+                                {#                                    {% endfor %}#}
+                                {##}
+                                {#                                    {{ filter.content.country.value }}#}
+                                {#                                {% endif %}#}
+                                {#                                {% if filter.content.state.value is not None %}#}
+                                {#                                    {{ filter.content.state.op }} {{ filter.content.state.col }}#}
+                                {#                                    {{ filter.content.state.eql }}#}
+                                {#                                    {% for foo in filter.content.state.value %}#}
+                                {#                                        {{ foo }}#}
+                                {#                                    {% endfor %}#}
+                                {##}
+                                {#                                    {{ filter.content.state.value }}#}
+                                {#                                {% endif %}#}
+                                {#                                {% if filter.content.city.value is not None %}#}
+                                {#                                    {{ filter.content.city.op }} {{ filter.content.city.col }}#}
+                                {#                                    {{ filter.content.city.eql }}#}
+                                {#                                    {% for foo in filter.content.city.value %}#}
+                                {#                                        {{ foo }}#}
+                                {#                                    {% endfor %}#}
+                                {##}
+                                {#                                    {{ filter.content.city.value }}#}
+                                {#                                {% endif %}#}
+                                {#                                {% if filter.content.email.value is not None %}#}
+                                {#                                    {{ filter.content.email.op }} {{ filter.content.email.col }}#}
+                                {#                                    {{ filter.content.email.eql }}#}
+                                {#                                    {{ filter.content.email.value }}#}
+                                {#                                    {% for foo in  filter.content.email.value %}#}
+                                {#                                        {{ foo }}#}
+                                {#                                    {% endfor %}#}
+                                {##}
+                                {##}
+                                {#                                {% endif %}#}
+
+
+                            </a></td>
+                            <td><a class="text-decoration-none text-dark" href="{% url 'filter-details' filter.id %}"
+                                   target="_blank">{{ filter.created_by }}</a></td>
+                            <td><a class="text-decoration-none text-dark" href="{% url 'email-details' filter.id %}"
+                                   target="_blank">{{ filter.created }}</a></td>
+
+                            {#                            <td><a class="text-decoration-none text-dark" href="{% url 'email-details' filter.id %}"#}
+                            {#                                   target="_blank">{{ filter.updated }}</a></td>#}
+
+                            {#                            <td><a href="{% url 'email-update' filter.id %}" class="btn btn-warning">Edit</a></td>#}
+                            <td><a href="{% url 'filter-delete' filter.id %}" class="btn btn-danger">Delete</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,212 @@
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../index.html">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-laugh-wink"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">{{ request.user }} </div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item ">
+        {#            <a class="nav-link" href="index.html">#}
+        {#                <i class="fas fa-fw fa-tachometer-alt"></i>#}
+        {#                <span>Dashboard</span></a>#}
+        <a class="nav-link" href="{% url 'home' %}">
+            <i class="fa fa-home" aria-hidden="true"></i>
+
+            {#            <i class="fas fa-fw fa-tachometer-alt"></i>#}
+            <span>Home</span></a>
+    </li>
+    <li class="nav-item ">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#email-send-filter"
+           aria-expanded="true" aria-controls="collapseTwo">
+            {#                        <i class="fas fa-fw fa-cog"></i>#}
+            {#            <i class="fa fa-user" aria-hidden="true"></i>#}
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            <span>Compose Mail</span>
+        </a>
+
+        <div id="email-send-filter" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Send Mail:</h6>
+                {#                <a class="collapse-item" href="{% url 'email-send' %}">Compose Mail</a>#}
+                <a class="collapse-item" href="{% url 'filter-email-send' %}">Compose Mail</a>
+                {#                <a class="collapse-item" href="{% url 'filter-email-send' %}">Compose Mail with Filter</a>#}
+            </div>
+        </div>
+
+
+        {#        <a class="nav-link" href="index.html">#}
+        {#            <i class="fas fa-fw fa-tachometer-alt"></i>#}
+        {#            <span>Dashboard</span></a>#}
+        {#        <a class="nav-link" href="{% url 'email-send' %}">#}
+        {#            <i class="fas fa-fw fa-tachometer-alt"></i>#}
+        {#            <i class="fa fa-plus" aria-hidden="true"></i>#}
+        {##}
+        {#            <span>Compose Mail</span></a>#}
+        {#        <a class="nav-link" href="{% url 'filter-email-send' %}">#}
+        {#            <i class="fas fa-fw fa-tachometer-alt"></i>#}
+        {#            <i class="fa fa-plus" aria-hidden="true"></i>#}
+        {##}
+        {#            <span>Mail Send + Filter</span></a>#}
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+
+    </div>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSchedule"
+           aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            <span>Schedule</span>
+        </a>
+
+        <div id="collapseSchedule" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Schedule:</h6>
+                <a class="collapse-item" href="{% url 'add-schedule' %}">Create Schedule</a>
+                <a class="collapse-item" href="{% url 'schedule-list' %}">Schedule List</a>
+
+            </div>
+        </div>
+    </li>
+    <!-- Nav Item - Pages Collapse Menu -->
+
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+           aria-expanded="true" aria-controls="collapseTwo">
+            {#            <i class="fas fa-fw fa-cog"></i>#}
+            <i class="fa fa-user" aria-hidden="true"></i>
+
+            <span>Recipients</span>
+        </a>
+        {#        <a class="nav-link collapsed" href="{% url 'recipient-list' %}">#}
+        {#            <i class="fas fa-fw fa-cog"></i>#}
+        {#            <span>Recipients List</span>#}
+        {#        </a>#}
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Recipients:</h6>
+                <a class="collapse-item" href="{% url 'recipient-list' %}">Recipients List</a>
+                <a class="collapse-item" href="{% url 'add-recipient' %}">Add Recipient</a>
+                <a class="collapse-item" href="{% url 'recipient-upload' %}">Add Recipient File(Csv)</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item">
+        {#        <a class="nav-link collapsed" href="{% url 'email-list' %}">#}
+        {#            <i class="fas fa-fw fa-wrench"></i>#}
+        {#            <span>Email List</span>#}
+        {#        </a>#}
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+           aria-expanded="true" aria-controls="collapseTwo">
+            {#            <i class="fas fa-fw fa-cog"></i>#}
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+            <span>Emails</span>
+        </a>
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+             data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Emails:</h6>
+                <a class="collapse-item" href="{% url 'email-list' %}">Emails List</a>
+                <a class="collapse-item" href="{% url 'add-email' %}">Add Email</a>
+                <a class="collapse-item" href="{% url 'email-send-list' %}">Email Sent History</a>
+                {#                <a class="collapse-item" href="utilities-color.html">Colors</a>#}
+                {#                <a class="collapse-item" href="utilities-border.html">Borders</a>#}
+                {#                <a class="collapse-item" href="utilities-animation.html">Animations</a>#}
+                {#                <a class="collapse-item" href="utilities-other.html">Other</a>#}
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#filter"
+           aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fa fa-filter" aria-hidden="true"></i>
+            <span>Filters</span>
+        </a>
+        <div id="filter" class="collapse" aria-labelledby="headingUtilities"
+             data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Filters:</h6>
+                <a class="collapse-item" href="{% url 'add-filter' %}">Add Filter </a>
+                <a class="collapse-item" href="{% url 'filter-list' %}">Filters List </a>
+                {#                <a class="collapse-item" href="{% url 'add-email' %}">Add Email</a>#}
+                {#                <a class="collapse-item" href="{% url 'email-send-list' %}">Email Sent History</a>#}
+
+            </div>
+        </div>
+    </li>
+
+    <!-- Divider -->
+    {#    <hr class="sidebar-divider">#}
+    {##}
+    {#    <!-- Heading -->#}
+    {#    <div class="sidebar-heading">#}
+    {#        Addons#}
+    {#    </div>#}
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        {#        <a class="nav-link collapsed" href="{% url 'add-recipient' %}">#}
+        {#            <i class="fas fa-fw fa-folder"></i>#}
+        {#            <span>Add Recipient</span>#}
+        {#        </a>#}
+        {#            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">#}
+        {#                <div class="bg-white py-2 collapse-inner rounded">#}
+        {#                    <h6 class="collapse-header">Login Screens:</h6>#}
+        {#                    <a class="collapse-item" href="login.html">Login</a>#}
+        {#                    <a class="collapse-item" href="register.html">Register</a>#}
+        {#                    <a class="collapse-item" href="forgot-password.html">Forgot Password</a>#}
+        {#                    <div class="collapse-divider"></div>#}
+        {#                    <h6 class="collapse-header">Other Pages:</h6>#}
+        {#                    <a class="collapse-item" href="404.html">404 Page</a>#}
+        {#                    <a class="collapse-item" href="blank.html">Blank Page</a>#}
+        {#                </div>#}
+        {#            </div>#}
+    </li>
+
+    <!-- Nav Item - Charts -->
+    {#    <li class="nav-item">#}
+    {#        <a class="nav-link" href="{% url 'add-email' %}">#}
+    {#            <i class="fas fa-fw fa-chart-area"></i>#}
+    {#            <span>Add Mail</span></a>#}
+    {#    </li>#}
+
+    <!-- Nav Item - Tables -->
+{#    <li class="nav-item">#}
+{#        <a class="nav-link" href="tables.html">#}
+{#            <i class="fas fa-fw fa-table"></i>#}
+{#            <span>Tables</span></a>#}
+{#    </li>#}
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+{#    <div class="text-center d-none d-md-inline">#}
+{#        <button class="rounded-circle border-0" id="sidebarToggle"></button>#}
+{#    </div>#}
+
+    <!-- Sidebar Message -->
+{#            <div class="sidebar-card d-none d-lg-flex">#}
+{#                <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">#}
+{#                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and#}
+{#                    more!</p>#}
+{#                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>#}
+{#            </div>#}
+
+</ul>
+<!-- End of Sidebar -->

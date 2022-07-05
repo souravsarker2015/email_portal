@@ -1,0 +1,66 @@
+{% extends 'email_app/base/base.html' %}
+{% block title %}
+    <title>Schedule List</title>
+{% endblock %}
+{% block content %}
+    <h3 class="">Schedules</h3>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Schedules Table </h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Date/Time</th>
+                        <th scope="col">Created</th>
+                        <th scope="col">Updated</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for schedule in schedules %}
+                        <tr>
+                            <th><a class="text-decoration-none text-dark"
+                                   href="{% url 'schedule-details' schedule.id %}"
+                                   target="_blank">{{ forloop.counter }}</a>
+                            </th>
+                            <td><a class="text-decoration-none text-dark"
+                                   href="{% url 'schedule-details' schedule.id %}"
+                                   target="_blank">{{ schedule.schedule_title }}</a>
+                            </td>
+                            <td><a class="text-decoration-none text-dark"
+                                   href="{% url 'schedule-details' schedule.id %}"
+                                   target="_blank">{{ schedule.date_time }}</a>
+                            </td>
+                            <td><a class="text-decoration-none text-dark"
+                                   href="{% url 'schedule-details' schedule.id %}"
+                                   target="_blank">{{ schedule.created }}</a>
+                            </td>
+                            <td><a class="text-decoration-none text-dark"
+                                   href="{% url 'schedule-details' schedule.id %}"
+                                   target="_blank">{{ schedule.updated }}</a>
+                            </td>
+                            <td><a href="{% url 'schedule-update' schedule.id %}" class="btn btn-warning">Edit</a>
+                            </td>
+                            <td><a href="{% url 'schedule-delete' schedule.id %}" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    {% block javascript %}
+
+
+    {% endblock %}
+{% endblock %}

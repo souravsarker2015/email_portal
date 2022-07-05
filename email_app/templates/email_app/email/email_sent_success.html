@@ -1,0 +1,14 @@
+{% extends 'email_app/base/base.html' %}
+{% block title %}
+    <title>Success</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Email has been sent</h1>
+        <p>{{ request.get_host }}</p>
+        <p>{{ settings.PROJECT_DOMAIN }}</p>
+        <p>{{ request.user.id }}</p>
+    </div>
+
+{% endblock %}

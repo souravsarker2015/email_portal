@@ -1,0 +1,53 @@
+{% extends 'email_app/base/base.html' %}
+{% block title %}
+    <title>Email Adding Form</title>
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="customSwitch1" checked>
+            <label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>
+        </div>
+        <div class="row my-3">
+            <div class="col-sm-12 ">
+                <h3>Add Email</h3>
+                <hr>
+                <form action="" method="post" novalidate class="shadow p-5">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="subject_input">Subject :</label>
+                        <input type="text" class="form-control" id="subject_input">
+                    </div>
+                    <div>
+                        <p>Body :</p>
+                        <div id="summernote"></div>
+                    </div>
+                    <input type="submit" class="btn btn-primary btn-user btn-block" value="Create Email">
+                    <br>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        $('#summernote').summernote({
+            placeholder: "",
+            tabsize: 4,
+            height: 220,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
+    </script>
+
+{% endblock %}

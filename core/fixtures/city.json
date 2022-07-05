@@ -1,0 +1,10 @@
+[
+  {
+    "model": "core.City",
+    "pk": 1,
+    "fields": {
+      "name": "New York",
+      "state": 1
+    }
+  }
+]

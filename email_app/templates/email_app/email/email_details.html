@@ -1,0 +1,17 @@
+{% extends 'email_app/base/base.html' %}
+
+{% block title %}
+    <title>Email View</title>
+{% endblock %}
+{% block content %}
+    <div class="container mt-5">
+        <h1>Email Details</h1>
+        <ul class="list-group">
+            <li class="list-group-item"><p>Created By : {{ email.created_by }}</p></li>
+            <li class="list-group-item"><p>Subject : {{ email.subject }}</p></li>
+            <li class="list-group-item"><p>Body : {{ email.email_body|safe }}</p></li>
+            <li class="list-group-item"><p>Created : {{ email.created }}</p></li>
+            <li class="list-group-item"><p>Updated : {{ email.updated }}</p></li>
+        </ul>
+    </div>
+{% endblock %}

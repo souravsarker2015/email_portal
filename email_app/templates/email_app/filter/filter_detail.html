@@ -1,0 +1,17 @@
+{% extends 'email_app/base/base.html' %}
+
+{% block title %}
+    <title>Filter View</title>
+{% endblock %}
+{% block content %}
+    <div class="container mt-5">
+        <h1>Filter Details</h1>
+        <ul class="list-group">
+            <li class="list-group-item"><p>Title: {{ filter.title }}</p></li>
+            <li class="list-group-item"><p>Content : {{ filter.content }}</p></li>
+            <li class="list-group-item"><p>Created By : {{ filter.created_by }}</p></li>
+            <li class="list-group-item"><p>Created : {{ filter.created }}</p></li>
+            <li class="list-group-item"><p>Updated : {{ filter.updated }}</p></li>
+        </ul>
+    </div>
+{% endblock %}

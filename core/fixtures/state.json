@@ -1,0 +1,18 @@
+[
+  {
+    "model": "core.State",
+    "pk": 1,
+    "fields": {
+      "name": "United States",
+      "country": 1
+    }
+  },
+  {
+    "model": "core.State",
+    "pk": 2,
+    "fields": {
+      "name": "Canada",
+      "country": 3
+    }
+  }
+]

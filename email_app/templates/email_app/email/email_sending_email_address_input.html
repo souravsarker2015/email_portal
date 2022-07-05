@@ -1,0 +1,158 @@
+{% extends 'email_app/base/base.html' %}
+{% block title %}
+    <title>Email Send</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container ">
+        <h3>Send Email</h3>
+        <hr>
+        <div class="shadow p-5 mt-2">
+            <div class="d-flex justify-content-around filter_div">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radio1_email_address"
+                           value="option1" onclick="location.href='{% url 'email-send-email-address' %}'" checked>
+                    <label class="form-check-label" for="radio1_email_address">Email Address</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                           value="option2" onclick="location.href='{% url 'email-send-filter' %}'">
+                    <label class="form-check-label" for="inlineRadio2">Filter</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                           value="option2" onclick="location.href='{% url 'email-send-recipient' %}'">
+                    <label class="form-check-label" for="inlineRadio2">Recipients</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4"
+                           value="option2" onclick="location.href='{% url 'mail-schedule' %}'">
+                    <label class="form-check-label" for="inlineRadio4">Schedule Mail</label>
+                </div>
+            </div>
+
+            <form action="" method="post" class=" p-5 mt-1">
+                {% csrf_token %}
+                <div class="">
+                    <p>Email</p>
+                    <select class="js-example-basic-multiple" multiple="multiple"
+                            style="width:100%;height: 30px" name="email">
+                        <option value=""></option>
+                    </select>
+                </div>
+
+                <div class="form-group mt-3">
+                    <p>Subject</p>
+                    <select class="js-example-basic-single" name="subject" style="width:100%;height: 30px">
+                        {% for email in emails %}
+                            <option value="{{ email.subject }}"
+                            >{{ email.subject }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+            </form>
+        </div>
+
+    </div>
+
+    {% block javascript %}
+        <script>
+
+            function email_address_input() {
+                let email_address_input = document.getElementById("email_address_input");
+                email_address_input.style.cssText += ';display:block !important;'
+
+                let filter_input = document.getElementById("filter_input");
+                filter_input.style.cssText += ';display:none !important;';
+                let recipients_input = document.getElementById("recipients_input");
+                recipients_input.style.cssText += ';display:none !important;';
+                let email_input = document.getElementById("email_input");
+                email_input.style.cssText += ';display:none !important;';
+
+                {#$('[name="email_address_input_value"]').empty().trigger('change');#}
+
+            }
+
+
+            function filter_input() {
+                let filter_input = document.getElementById("filter_input");
+                filter_input.style.cssText += ';display:block !important;'
+
+                let email_address_input = document.getElementById("email_address_input");
+                email_address_input.style.cssText += ';display:none !important;';
+                let recipients_input = document.getElementById("recipients_input");
+                recipients_input.style.cssText += ';display:none !important;';
+                let email_input = document.getElementById("email_input");
+                email_input.style.cssText += ';display:none !important;';
+
+                {#$('[name="email_address_input_value"]').empty().trigger('change');#}
+
+            }
+
+            function recipients_input() {
+                let recipients_input = document.getElementById("recipients_input");
+                recipients_input.style.cssText += ';display:block !important;';
+
+                let email_address_input = document.getElementById("email_address_input");
+                email_address_input.style.cssText += ';display:none !important;';
+                let filter_input = document.getElementById("filter_input");
+                filter_input.style.cssText += ';display:none !important;';
+                let email_input = document.getElementById("email_input");
+                email_input.style.cssText += ';display:none !important;';
+
+
+            }
+
+            function email_input() {
+                let email_input = document.getElementById("email_input");
+                email_input.style.cssText += ';display:block !important;';
+
+                let recipients_input = document.getElementById("recipients_input");
+                recipients_input.style.cssText += ';display:none !important;';
+
+                let email_address_input = document.getElementById("email_address_input");
+                email_address_input.style.cssText += ';display:none !important;';
+
+                let filter_input = document.getElementById("filter_input");
+                filter_input.style.cssText += ';display:none !important;';
+
+
+            }
+
+            $(document).ready(function () {
+                $('.js-example-basic-single').select2();
+            });
+            $(document).ready(function () {
+                $('.js-example-basic-multiple').select2({
+                    tags: true,
+                    tokenSeparators: [',', ' ']
+                });
+            });
+
+        </script>
+
+
+    {% endblock %}
+
+{% endblock %}
+
+{#    <div class="container">#}
+{#        <form class="shadow p-5 mt-5" method="post">#}
+{#            {% csrf_token %}#}
+{#            <div class="form-group">#}
+{#                <label for="email">Email</label>#}
+{#                <input type="text" class="form-control" id="email" aria-describedby="emailHelp" name="email">#}
+{#            </div>#}
+{#            <div class="form-group">#}
+{#                <label for="subject">Subject</label>#}
+{#                <input type="text" class="form-control" id="subject" aria-describedby="emailHelp" name="subject">#}
+{#            </div>#}
+{#            <div class="form-group">#}
+{#                <label for="message">Body</label>#}
+{#                <textarea class="form-control" id="message" rows="5" name="body"></textarea>#}
+{#            </div>#}
+{##}
+{#            <button type="submit" class="btn btn-primary">Submit</button>#}
+{#        </form>#}
+{#    </div>#}
