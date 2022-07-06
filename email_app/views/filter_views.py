@@ -94,7 +94,7 @@ class FilterDetailView(DetailView):
 class FilterDeleteView(DeleteView):
     model = Filter
     template_name = 'email_app/filter/filter_delete.html'
-    success_url = '/filter_list/'
+    success_url = '/admin/filters/'
 
 # class FilterUpdateView(UpdateView):
 #     model = Email

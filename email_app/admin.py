@@ -20,22 +20,10 @@ class RecipientAdmin(admin.ModelAdmin):
 class EmailAdmin(admin.ModelAdmin):
     list_display = ['id', 'created_by', 'subject', 'email_body']
 
-    # actions = None
-    #
-    # def save_model(self, request, obj, form, change):
-    #     if not obj.created_by_id:
-    #         obj.created_by = request.user
-    #     obj.save()
 
-
-# @admin.register(History)
-# class CityAdmin(admin.ModelAdmin):
+# @admin.register(EmailRecipient)
+# class EmailRecipientAdmin(admin.ModelAdmin):
 #     list_display = ['id', ]
-
-
-@admin.register(EmailRecipient)
-class EmailRecipientAdmin(admin.ModelAdmin):
-    list_display = ['id', ]
 
 
 @admin.register(Filter)

@@ -46,13 +46,13 @@ class RecipientUpdateView(UpdateView):
     form_class = RecipientForm
     # fields = '__all__'
     template_name = 'email_app/recipient/recipient_update.html'
-    success_url = '/recipient_list/'
+    success_url = '/admin/recipients/'
 
 
 class RecipientDeleteView(DeleteView):
     model = Recipient
     template_name = 'email_app/recipient/recipient_confirm_delete.html'
-    success_url = '/recipient_list/'
+    success_url = '/admin/recipients/'
 
 
 def age_to_dob_calculate(arg):

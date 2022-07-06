@@ -12,7 +12,7 @@
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="subject_input">Subject :</label>
-                        <input name="subject" type="text" class="form-control" id="subject_input">
+                        <input name="subject" type="text" class="form-control" id="subject_input" value="{{ subject }}">
                     </div>
                     <div>
                         <p>Body :</p>
@@ -20,10 +20,12 @@
                             <input type="checkbox" class="custom-control-input summer_code" id="summer_code_id">
                             <label class="custom-control-label" for="summer_code_id">html</label>
                         </div>
+                        <input value="{{ body }}" name="" id="textCode" type="hidden">
+
                         <div id="summernote"></div>
                     </div>
                     <input type="hidden" name="summer_html_code" id="summer_">
-                    <input type="submit" class="btn btn-primary btn-user btn-block" value="Create Email">
+                    <input type="submit" class="btn btn-primary btn-user btn-block" value="Update">
                     <br>
 
                 </form>
@@ -50,6 +52,7 @@
             ]
         });
 
+
         $(".summer_code").click(function () {
             console.log($(".summer_code").is(":checked"));
             if ($(".summer_code").is(":checked") === true) {
@@ -64,39 +67,6 @@
             }
         })
 
-        /*if ($(".codeview").length == 0) {
-            $(".summer_code").click(function () {
-                $(".btn-codeview").trigger("click");
-            });
-        }*/
-
-
-
-        /*$(".summer_code").click(function () {
-            if ($(".codeview").length == 0) {
-                $(".btn-codeview").trigger("click");
-            }
-            if ($(".codeview").length == 1) {
-                $(".codeview").length = 0;
-                $(".summer_code").click(function () {
-                    $(".btn-codeview").trigger("click");
-                });
-            }
-        })*/
-        /*else {
-                $(".btn-codeview").trigger("click");
-            }*/
-
-        /*$(".summer_code").click(function () {
-            if ($(".codeview").length == 0) {
-                $(".btn-codeview").trigger("click");
-            }
-            else {
-                $(".btn-codeview").trigger("click");
-            }
-        })*/
-
-
         $('#email-create-form').submit(function () {
             let ht = $("#summernote").summernote("code");
             let res = document.getElementById("summer_").value = `${ht}`
@@ -104,14 +74,7 @@
             {#$('#your-input').val($('#editor').html())#}
         });
 
-        function getCode() {
-            let ht = $("#summernote").summernote("code");
-            document.getElementById("code_get").textContent = `${ht}`
-            console.log(ht)
-        }
-
-        /*function postCode(e) {
-            e.preventDefault()
+        function postCode() {
             $('#summernote').on('summernote.init', function () {
                 $('#summernote').summernote('codeview.activate');
             }).summernote();
@@ -120,7 +83,10 @@
             let z = markupStr.value
             console.log(z)
             $('#summernote').summernote('code', z);
-        }*/
+        }
+
+        postCode();
+
     </script>
 
 

@@ -2,6 +2,7 @@ import json
 from datetime import date
 
 from django.db.models import Q
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from django.utils.timezone import now
@@ -62,12 +63,34 @@ class EmailDetailView(DetailView):
     template_name = 'email_app/email/email_details.html'
 
 
-class EmailUpdateView(UpdateView):
-    model = Email
-    form_class = EmailForm
-    # fields = '__all__'
-    template_name = 'email_app/email/email_update.html'
-    success_url = '/email_list/'
+# class EmailUpdateView(UpdateView):
+#     model = Email
+#     form_class = EmailForm
+#     # fields = '__all__'
+#     template_name = 'email_app/email/email_update.html'
+#     success_url = '/email_list/'
+
+
+class EmailUpdate(View):
+    def get(self, request, pk):
+        email = Email.objects.get(pk=pk)
+        email_subject = email.subject
+        email_body = email.email_body
+        data = {
+            'subject': email_subject,
+            'body': email_body,
+        }
+        return render(request, 'email_app/email/email_update1.html', data)
+
+    def post(self, request, pk):
+        subject = request.POST.get('subject')
+        body = request.POST.get('summer_html_code')
+        print(f'subject : {subject}, body: {body}')
+        email = Email.objects.get(pk=pk)
+        email.subject = subject
+        email.email_body = body
+        email.save()
+        return redirect("email-list")
 
 
 class EmailDeleteView(DeleteView):
@@ -100,7 +123,7 @@ class EmailSendDetailView(DetailView):
 class EmailHistoryDeleteView(DeleteView):
     model = History
     template_name = 'email_app/email/email_history_delete.html'
-    success_url = '/email_send_list/'
+    success_url = '/admin/emails/'
 
 
 class EmailSendRecipient(View):
@@ -388,7 +411,6 @@ def age_to_dob_calculate_minus(arg):
 def age_to_dob_calculate_plus(arg):
     current = now().date()
     return date(current.year - int(arg) + 1, current.month, current.day)
-
 
 # def send_dictionary(request):
 #     # create data dictionary

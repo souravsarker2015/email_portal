@@ -15,7 +15,6 @@
                     <thead>
                     <tr>
                         <th scope="col">Id</th>
-                        <th scope="col">Title</th>
                         <th scope="col">Date/Time</th>
                         <th scope="col">Created</th>
                         <th scope="col">Updated</th>
@@ -33,12 +32,9 @@
                             </th>
                             <td><a class="text-decoration-none text-dark"
                                    href="{% url 'schedule-details' schedule.id %}"
-                                   target="_blank">{{ schedule.schedule_title }}</a>
+                                   target="_blank">{{ schedule.schedule }}</a>
                             </td>
-                            <td><a class="text-decoration-none text-dark"
-                                   href="{% url 'schedule-details' schedule.id %}"
-                                   target="_blank">{{ schedule.date_time }}</a>
-                            </td>
+
                             <td><a class="text-decoration-none text-dark"
                                    href="{% url 'schedule-details' schedule.id %}"
                                    target="_blank">{{ schedule.created }}</a>
