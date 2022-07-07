@@ -20,7 +20,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'email_app',
     'core',
-    'crispy_forms',
+    # 'crispy_forms',
 
     # 'django_cron',
 ]
