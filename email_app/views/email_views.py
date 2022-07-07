@@ -148,13 +148,11 @@ class EmailSendRecipient(View):
             for i in recipients:
                 recipient = Recipient.objects.get(email_address=i)
                 e_body = email_body.replace('{name}', recipient.name).replace('{email}', i)
-                e_body_ = e_body + f'<img src="https://sourov8251.pythonanywhere.com/email_tracking/{recipient.id}/{email.id}/" width="0px" height="0px">'
 
                 # e_body_ = e_body + f'<img src="http://127.0.0.1:8000/admin/email/tracking/{ recipient.id }/{ email.id }/" width="20px" height="20px">'
 
                 e_body_ = e_body + f'<img src="https://sourov8251.pythonanywhere.com/admin/email/tracking/{ recipient.id }/{ email.id }/" width="20px" height="20px">'
 
-                print(e_body_)
                 arr.append(i)
                 # History.objects.create(email=i, subject=subject, body=email.email_body, created_by=self.request.user)
                 send_mail(subject, e_body_, from_email='souravsarker2015@gmail.com', recipient_list=arr, html_message=e_body_)
