@@ -96,3 +96,8 @@ class ScheduleContent(BaseModel):
     subject = models.CharField(max_length=254, null=True, blank=True)
     schedule = models.CharField(max_length=254, null=True, blank=True)
 
+
+class TrackedRecipients(BaseModel):
+    recipient = models.CharField(max_length=254, blank=True, null=True)
+    subject = models.CharField(max_length=254, blank=True, null=True)
+    seen_time = models.DateTimeField(blank=True, null=True)

@@ -1,0 +1,15 @@
+{% extends 'email_app/base/base.html' %}
+
+{% block title %}
+    <title>Tracked Recipient Detail</title>
+{% endblock %}
+{% block content %}
+    <div class="container mt-5">
+        <h1>Tracked Recipient Detail</h1>
+        <ul class="list-group">
+            <li class="list-group-item"><p>Email Address: {{ recipient.recipient }}</p></li>
+            <li class="list-group-item"><p>Subject: {{ recipient.subject }}</p></li>
+            <li class="list-group-item"><p>Seen Time: {{ recipient.seen_time }}</p></li>
+        </ul>
+    </div>
+{% endblock %}

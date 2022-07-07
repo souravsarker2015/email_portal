@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import User, Recipient, Email, History, EmailRecipient, Filter, Csv, Schedule, ScheduleContent
+from .models import User, Recipient, Email, History, EmailRecipient, Filter, Csv, Schedule, ScheduleContent, TrackedRecipients
 from email_app.forms import CustomUserForm, CustomUserChangeForm
 
 
@@ -49,3 +49,8 @@ class ScheduleAdmin(admin.ModelAdmin):
 @admin.register(ScheduleContent)
 class ScheduleContentAdmin(admin.ModelAdmin):
     list_display = ['id', 'email', 'subject', 'schedule']
+
+
+@admin.register(TrackedRecipients)
+class TrackedRecipientsAdmin(admin.ModelAdmin):
+    list_display = ['id', 'recipient', 'subject', 'seen_time']

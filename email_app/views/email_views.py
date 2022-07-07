@@ -139,13 +139,8 @@ class EmailSendRecipient(View):
         return render(request, 'email_app/email/email_sending_recipient_input.html', data)
 
     def post(self, request):
-        # print(self.request.user.username)
-        # print(self.request.user.email)
-        # email_address = request.POST.getlist("email")
         recipients = request.POST.getlist("recipients")
-
         subject = request.POST.get("subject")
-
         if recipients is not None and subject is not None:
             email = Email.objects.get(subject=subject)
             email_body = email.email_body
@@ -153,10 +148,16 @@ class EmailSendRecipient(View):
             for i in recipients:
                 recipient = Recipient.objects.get(email_address=i)
                 e_body = email_body.replace('{name}', recipient.name).replace('{email}', i)
-                # e_body = email_body.replace('{email}', i)
+                e_body_ = e_body + f'<img src="https://sourov8251.pythonanywhere.com/email_tracking/{recipient.id}/{email.id}/" width="0px" height="0px">'
+
+                # e_body_ = e_body + f'<img src="http://127.0.0.1:8000/admin/email/tracking/{ recipient.id }/{ email.id }/" width="20px" height="20px">'
+
+                e_body_ = e_body + f'<img src="https://sourov8251.pythonanywhere.com/admin/email/tracking/{ recipient.id }/{ email.id }/" width="20px" height="20px">'
+
+                print(e_body_)
                 arr.append(i)
-                History.objects.create(email=i, subject=subject, body=email.email_body, created_by=self.request.user)
-                send_mail(subject, email.email_body, from_email='souravsarker2015@gmail.com', recipient_list=arr, html_message=e_body)
+                # History.objects.create(email=i, subject=subject, body=email.email_body, created_by=self.request.user)
+                send_mail(subject, e_body_, from_email='souravsarker2015@gmail.com', recipient_list=arr, html_message=e_body_)
                 arr = []
 
         return redirect('email-send-success')
@@ -177,16 +178,21 @@ class EmailSendEmailAddress(View):
     def post(self, request):
         email_address = request.POST.getlist("email")
         subject = request.POST.get("subject")
-        arr = []
+
         if email_address is not None and subject is not None:
             email = Email.objects.get(subject=subject)
             email_body = email.email_body
+            arr = []
             for i in email_address:
                 print(i)
-                recipient = Recipient.objects.get(email_address=i)
-                e_body = email_body.replace('{email}', i).replace('{name}', recipient.name)
-
-                e_body_ = e_body + f'<img src="http://127.0.0.1:8000/email_tracking/{recipient.id}/{email.id}" width="20px" height="20px">'
+                if Recipient.objects.get(email_address=i).exists():
+                    recipient = Recipient.objects.get(email_address=i)
+                    e_body = email_body.replace('{email}', i).replace('{name}', recipient.name)
+                    e_body_ = e_body + f'<img src="https://sourov8251.pythonanywhere.com/email_tracking/{recipient.id}/{email.id}" width="20px" height="20px">'
+                    print(e_body_)
+                else:
+                    e_body = email_body.replace('{email}', i).replace('{name}', i)
+                    e_body_ = e_body + f'<img src="https://sourov8251.pythonanywhere.com/email_tracking/{email.id}" width="20px" height="20px">'
 
                 print(e_body_)
                 arr.append(i)

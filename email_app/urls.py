@@ -11,7 +11,7 @@ from .views.schedule_views import ScheduleViews, ScheduleUpdateView, ScheduleDet
 from django.urls import path, re_path as url
 
 # from .views.tracking import email_seen_
-from .views.tracking import email_seen
+from .views.tracking import email_seen, TrackedRecipientListView, TrackedRecipientDetailView, TrackedRecipientDeleteView
 
 urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),
@@ -71,8 +71,13 @@ urlpatterns = [
     # path('test/', email_views.send_dictionary, name='test'),
     path('email/schedule/', mail_schedule_view, name='mail-schedule'),
     path('schedule/created/', ScheduleCreated.as_view(), name='schedule-created'),
+
+    path('admin/tracked/recipients/', login_required(TrackedRecipientListView.as_view()), name='tracked-recipients-list'),
+    path('admin/tracked/recipient/<int:pk>/', login_required(TrackedRecipientDetailView.as_view()), name='tracked-recipients-details'),
+    path('admin/tracked/recipient/<int:pk>/delete/', login_required(TrackedRecipientDeleteView.as_view()), name='tracked-recipients-delete'),
+
     path('te/', mail_schedule, name='mail_schedule'),
-    path('email/tracking/<int:r_id>/<int:e_id>/', email_seen, name="email_seen"),
+    path('admin/email/tracking/<int:r_id>/<int:e_id>/', email_seen, name="email_seen"),
     # url(r"^email/tr-(?P<key>.*)\.png$", email_seen, name="email_seen"),
     # url(r"^email/tr-(?P<key>.*)\.png$", email_seen, name="email_seen"),
     # url(r"^open-tracking/(?P<user>[0-9]+)/$", PixelView.as_view(), name="pixel_view"),
