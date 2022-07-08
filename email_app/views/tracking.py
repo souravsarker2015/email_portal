@@ -12,16 +12,18 @@ def email_seen(request, r_id, e_id):
     e = Email.objects.get(id=e_id)
     TrackedRecipients.objects.create(recipient=r.email_address, subject=e.subject, seen_time=now())
     print("Successfully Tracked")
-    print(f"{now()} \n")
-    print(f"recipient name: {r.name}")
-    print(f"email sub: {e.subject}")
-    # print(os.path.dirname(os.path.abspath(__file__)) + "/res/")
 
     with open(os.path.dirname(os.path.abspath(__file__)) + "/res/1x1.png", "rb") as f:
         return HttpResponse(f.read(), content_type="image/png")
-    # return HttpResponse("check")
-    # with open(os.path.dirname(os.path.abspath(__file__)) + "/10.png", "rb") as f:
-    #     return HttpResponse(f.read(), content_type="image/png")
+
+
+def email_seen_(request, r_email, e_id):
+    e = Email.objects.get(id=e_id)
+    TrackedRecipients.objects.create(recipient=r_email, subject=e.subject, seen_time=now())
+    print("Successfully Tracked")
+
+    with open(os.path.dirname(os.path.abspath(__file__)) + "/res/1x1.png", "rb") as f:
+        return HttpResponse(f.read(), content_type="image/png")
 
 
 class TrackedRecipientListView(ListView):

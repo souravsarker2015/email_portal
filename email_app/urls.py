@@ -1,5 +1,3 @@
-from django.urls import path
-from email_app import views as email_app_views
 from .cron import mail_schedule, mail_schedule_view
 from .forms import LoginForm
 from django.contrib.auth import views as auth_view
@@ -8,10 +6,9 @@ from .views import email_views as email_views, filter_views as filter_views, rec
 from email_app.views import views
 from .views.csv_views import CsvFileView
 from .views.schedule_views import ScheduleViews, ScheduleUpdateView, ScheduleDetailView, ScheduleDeleteView, ScheduleListView, ScheduleCreated
-from django.urls import path, re_path as url
+from django.urls import path
 
-# from .views.tracking import email_seen_
-from .views.tracking import email_seen, TrackedRecipientListView, TrackedRecipientDetailView, TrackedRecipientDeleteView
+from .views.tracking import email_seen, TrackedRecipientListView, TrackedRecipientDetailView, TrackedRecipientDeleteView, email_seen_
 
 urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),
@@ -68,7 +65,6 @@ urlpatterns = [
          name='schedule-update'),
     path('admin/schedule/<int:pk>/delete/', login_required(ScheduleDeleteView.as_view()),
          name='schedule-delete'),
-    # path('test/', email_views.send_dictionary, name='test'),
     path('email/schedule/', mail_schedule_view, name='mail-schedule'),
     path('schedule/created/', ScheduleCreated.as_view(), name='schedule-created'),
 
@@ -78,9 +74,7 @@ urlpatterns = [
 
     path('te/', mail_schedule, name='mail_schedule'),
     path('admin/email/tracking/<int:r_id>/<int:e_id>', email_seen, name="email_seen"),
-    # url(r"^email/tr-(?P<key>.*)\.png$", email_seen, name="email_seen"),
-    # url(r"^email/tr-(?P<key>.*)\.png$", email_seen, name="email_seen"),
-    # url(r"^open-tracking/(?P<user>[0-9]+)/$", PixelView.as_view(), name="pixel_view"),
+    path('admin/email/tracking/<slug:r_email>/<int:e_id>', email_seen_, name="email_seen"),
 
     path('account/login/', auth_view.LoginView.as_view(template_name='email_app/account/login.html', authentication_form=LoginForm), name='login'),
     path('account/logout/', auth_view.LogoutView.as_view(next_page='login'), name='logout'),

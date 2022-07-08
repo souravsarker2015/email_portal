@@ -151,7 +151,7 @@ class EmailSendRecipient(View):
 
                 # e_body_ = e_body + f'<img src="http://127.0.0.1:8000/admin/email/tracking/{ recipient.id }/{ email.id }/" width="20px" height="20px">'
 
-                e_body_ = e_body + f'<img src="https://sourov8251.pythonanywhere.com/admin/email/tracking/{recipient.id}/{email.id}" width="20px" height="20px">'
+                e_body_ = e_body + f'<img src="https://sourov8251.pythonanywhere.com/admin/email/tracking/{recipient.id}/{email.id}" width="0px" height="0px">'
                 print(e_body_)
                 arr.append(i)
                 # History.objects.create(email=i, subject=subject, body=email.email_body, created_by=self.request.user)
@@ -182,15 +182,14 @@ class EmailSendEmailAddress(View):
             email_body = email.email_body
             arr = []
             for i in email_address:
-                print(i)
                 if Recipient.objects.get(email_address=i).exists():
                     recipient = Recipient.objects.get(email_address=i)
                     e_body = email_body.replace('{email}', i).replace('{name}', recipient.name)
-                    e_body_ = e_body + f'<img src="https://sourov8251.pythonanywhere.com/email_tracking/{recipient.id}/{email.id}" width="20px" height="20px">'
+                    e_body_ = e_body + f'<img src="https://sourov8251.pythonanywhere.com/admin/email/tracking/{recipient.id}/{email.id}" width="0px" height="0px">'
                     print(e_body_)
                 else:
                     e_body = email_body.replace('{email}', i).replace('{name}', i)
-                    e_body_ = e_body + f'<img src="https://sourov8251.pythonanywhere.com/email_tracking/{email.id}" width="20px" height="20px">'
+                    e_body_ = e_body + f'<img src="https://sourov8251.pythonanywhere.com/admin/email/tracking/{i}/{email.id}" width="0px" height="0px">'
 
                 print(e_body_)
                 arr.append(i)
@@ -323,12 +322,15 @@ class EmailSendFilter(View):
             email_body = email.email_body
             # print(title)
             # print(email.email_body)
+
             for i in result:
                 arr.append(i)
                 recipient = Recipient.objects.get(email_address=i)
                 e_body = email_body.replace('{name}', str(recipient.name)).replace('{email}', str(i))
+                e_body_ = e_body + f'<img src="https://sourov8251.pythonanywhere.com/admin/email/tracking/{recipient.id}/{email.id}" width="0px" height="0px">'
+
                 History.objects.create(email=i, subject=title, body=email.email_body, created_by=self.request.user)
-                send_mail(title, email.email_body, from_email='souravsarker2015@gmail.com', recipient_list=arr, html_message=e_body)
+                send_mail(title, e_body_, from_email='souravsarker2015@gmail.com', recipient_list=arr, html_message=e_body_)
                 arr = []
             return redirect('email-send-success')
         return redirect("email-send-not-success")
