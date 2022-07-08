@@ -151,7 +151,7 @@ class EmailSendRecipient(View):
 
                 # e_body_ = e_body + f'<img src="http://127.0.0.1:8000/admin/email/tracking/{ recipient.id }/{ email.id }/" width="20px" height="20px">'
 
-                e_body_ = e_body + f'<img src="https://sourov8251.pythonanywhere.com/admin/email/tracking/{recipient.id}/{email.id}/" width="20px" height="20px">'
+                e_body_ = e_body + f'<img src="https://sourov8251.pythonanywhere.com/admin/email/tracking/{recipient.id}/{email.id}" width="20px" height="20px">'
                 print(e_body_)
                 arr.append(i)
                 # History.objects.create(email=i, subject=subject, body=email.email_body, created_by=self.request.user)

@@ -77,7 +77,7 @@ urlpatterns = [
     path('admin/tracked/recipient/<int:pk>/delete/', login_required(TrackedRecipientDeleteView.as_view()), name='tracked-recipients-delete'),
 
     path('te/', mail_schedule, name='mail_schedule'),
-    path('admin/email/tracking/<int:r_id>/<int:e_id>/', email_seen, name="email_seen"),
+    path('admin/email/tracking/<int:r_id>/<int:e_id>', email_seen, name="email_seen"),
     # url(r"^email/tr-(?P<key>.*)\.png$", email_seen, name="email_seen"),
     # url(r"^email/tr-(?P<key>.*)\.png$", email_seen, name="email_seen"),
     # url(r"^open-tracking/(?P<user>[0-9]+)/$", PixelView.as_view(), name="pixel_view"),
