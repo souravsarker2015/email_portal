@@ -189,7 +189,7 @@ class EmailSendEmailAddress(View):
                     print(e_body_)
                 else:
                     e_body = email_body.replace('{email}', i).replace('{name}', i)
-                    e_body_ = e_body + f'<img src="https://sourov8251.pythonanywhere.com/admin/email/tracking/{i}/{email.id}" width="0px" height="0px">'
+                    e_body_ = e_body + f'<img src="https://sourov8251.pythonanywhere.com/admin/email/tracking_/{i}/{email.id}" width="0px" height="0px">'
 
                 print(e_body_)
                 arr.append(i)

@@ -74,7 +74,7 @@ urlpatterns = [
 
     path('te/', mail_schedule, name='mail_schedule'),
     path('admin/email/tracking/<int:r_id>/<int:e_id>', email_seen, name="email_seen"),
-    path('admin/email/tracking/<slug:r_email>/<int:e_id>', email_seen_, name="email_seen"),
+    path('admin/email/tracking_/<str:r_email>/<int:e_id>', email_seen_, name="email_seen"),
 
     path('account/login/', auth_view.LoginView.as_view(template_name='email_app/account/login.html', authentication_form=LoginForm), name='login'),
     path('account/logout/', auth_view.LogoutView.as_view(next_page='login'), name='logout'),
