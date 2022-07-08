@@ -182,7 +182,7 @@ class EmailSendEmailAddress(View):
             email_body = email.email_body
             arr = []
             for i in email_address:
-                if Recipient.objects.get(email_address=i).exists():
+                if Recipient.objects.filter(email_address=i).exists():
                     recipient = Recipient.objects.get(email_address=i)
                     e_body = email_body.replace('{email}', i).replace('{name}', recipient.name)
                     e_body_ = e_body + f'<img src="https://sourov8251.pythonanywhere.com/admin/email/tracking/{recipient.id}/{email.id}" width="0px" height="0px">'
