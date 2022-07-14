@@ -1,9 +1,7 @@
 import os
-
 from django.http import HttpResponse
 from django.utils.timezone import now
 from django.views.generic import ListView, DetailView, DeleteView
-
 from email_app.models import Email, Recipient, TrackedRecipients
 
 
