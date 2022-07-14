@@ -4,6 +4,7 @@ from datetime import date
 from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.utils import timezone
 
 from django.utils.timezone import now
 from django.views import View
@@ -134,7 +135,6 @@ class EmailSendRecipient(View):
         data = {
             "recipients": recipients,
             "emails": emails,
-            # "filters": filters,
         }
         return render(request, 'email_app/email/email_sending_recipient_input.html', data)
 
@@ -150,16 +150,12 @@ class EmailSendRecipient(View):
                 e_body = email_body.replace('{name}', recipient.name).replace('{email}', i)
 
                 # e_body_ = e_body + f'<img src="http://127.0.0.1:8000/admin/email/tracking/{recipient.id}/{email.id}" width="20px" height="20px">'
-                print(recipient.id)
-                print(type(recipient.id))
-                print(email.id)
-                print(type(email.id))
-                # new_body = body + '<img src="/open-tracking/?id=%s" />' % (subscriber.id)
-                # e_body_ = e_body + '<img src="https://sourov8251.pythonanywhere.com/admin/email/tracking/?r_id=%s/?e_id=%s" alt="" width="20px" height="20px">' % str(recipient.id) % str(email.id)
 
-                e_body_ = e_body + f'<img src="https://sourov8251.pythonanywhere.com/admin/email/tracking/{recipient.id}/{email.id}" alt="" width="20px" height="20px">'
+                temp_id=timezone.now().strftime('%d%m%Y%H%M%S%f')
+                e_body_ = e_body + f'<img src="https://sourov8251.pythonanywhere.com/admin/email/tracking/{recipient.id}/{email.id}/1.png?id={temp_id}" width="20px" height="20px">'
                 print(e_body_)
                 arr.append(i)
+
                 # History.objects.create(email=i, subject=subject, body=email.email_body, created_by=self.request.user)
                 send_mail(subject, e_body_, from_email='souravsarker2015@gmail.com', recipient_list=arr, html_message=e_body_)
                 arr = []
@@ -169,13 +165,9 @@ class EmailSendRecipient(View):
 
 class EmailSendEmailAddress(View):
     def get(self, request):
-        # recipients = Recipient.objects.all()
         emails = Email.objects.all().order_by("-created")
-        # filters = Filter.objects.all()
         data = {
-            # "recipients": recipients,
             "emails": emails,
-            # "filters": filters,
         }
         return render(request, 'email_app/email/email_sending_email_address_input.html', data)
 
@@ -192,6 +184,7 @@ class EmailSendEmailAddress(View):
                     recipient = Recipient.objects.get(email_address=i)
                     e_body = email_body.replace('{email}', i).replace('{name}', recipient.name)
                     e_body_ = e_body + f'<img src="https://sourov8251.pythonanywhere.com/admin/email/tracking/{recipient.id}/{email.id}" width="0px" height="0px">'
+
                     print(e_body_)
                 else:
                     e_body = email_body.replace('{email}', i).replace('{name}', i)

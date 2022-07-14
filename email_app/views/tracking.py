@@ -11,10 +11,9 @@ def email_seen(request, r_id, e_id):
     e = Email.objects.get(id=e_id)
     TrackedRecipients.objects.create(recipient=r.email_address, subject=e.subject, seen_time=now())
     print("Successfully Tracked")
-
     print(os.path.dirname(os.path.abspath(__file__)) + "/res/")
     with open(os.path.dirname(os.path.abspath(__file__)) + "/res/1.png", "rb") as f:
-        return HttpResponse(f.read(), content_type="image/png", status=200)
+        return HttpResponse(f.read(), content_type="image/png")
 
 
 def email_seen_(request, r_email, e_id):

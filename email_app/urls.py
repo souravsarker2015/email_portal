@@ -73,8 +73,8 @@ urlpatterns = [
     path('admin/tracked/recipient/<int:pk>/delete/', login_required(TrackedRecipientDeleteView.as_view()), name='tracked-recipients-delete'),
 
     path('te/', mail_schedule, name='mail_schedule'),
-    path('admin/email/tracking/<int:r_id>/<int:e_id>', email_seen, name="email_seen"),
-    path('admin/email/tracking_/<str:r_email>/<int:e_id>', email_seen_, name="email_seen"),
+    path('admin/email/tracking/<int:r_id>/<int:e_id>/1.png', email_seen, name="email_seen"),
+    path('admin/email/tracking_/<str:r_email>/<int:e_id>/1.png', email_seen_, name="email_seen"),
     path('test/', test2, name="test2"),
 
     path('account/login/', auth_view.LoginView.as_view(template_name='email_app/account/login.html', authentication_form=LoginForm), name='login'),
