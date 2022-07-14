@@ -33,3 +33,124 @@
 #id_email_body {
     width: 100%;
 }
+
+.age-div {
+    margin-left: 20px;
+    margin-bottom: 30px;
+
+}
+
+#age-id_ {
+    border: 1px solid blue;
+    height: 30px;
+    width: 100px;
+    margin-right: 50px;
+}
+
+#age-measure {
+
+}
+
+#input_age_ {
+    width: 80px
+}
+
+#age-measure-div {
+    margin-right: 50px;
+}
+
+#age-measure-div1 {
+    margin-right: 60px;
+}
+
+#filter-div {
+    margin-left: 50px;
+
+}
+
+#and-or {
+    margin-right: 43px;
+}
+
+/*.and-or_ {*/
+/*    margin-left: 150px*/
+/*}*/
+
+#country_ {
+
+    margin-bottom: 30px;
+    display: none !important;
+    /*opacity: 0;*/
+
+}
+
+
+.state_ {
+    margin-bottom: 30px;
+    display: none !important;
+}
+
+.city_ {
+    margin-bottom: 30px;
+    display: none !important;
+}
+
+.email_ {
+    /*margin-bottom: 30px;*/
+    display: none !important;
+}
+
+/*#e1{*/
+/*    width: 100%;*/
+/*}*/
+
+/*#1:hover {*/
+/*    color: blue !important;*/
+/*    font-weight: bold !important;*/
+/*}*/
+.add_filter_hover_ p:hover {
+    color: blue !important;
+    cursor: pointer;
+    /*font-weight: bold !important;*/
+    /*font-size:20px;*/
+}
+
+/*    filter css   */
+.filter_div {
+    position: relative;
+}
+
+.email_address_input {
+    position: absolute;
+    top: 50px;
+    display: none;
+}
+
+.filter_input {
+    position: absolute;
+    top: 50px;
+    left: 325px;
+    display: none;
+}
+
+.recipients_input {
+    position: absolute;
+    top: 50px;
+    left: 585px;
+    display: none;
+}
+
+.email_input {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    /*left: 700px;*/
+    display: none;
+
+}
+/*.note-toolbar {*/
+/*  position: absolute;*/
+/*  bottom: -230px;  !*at will*!*/
+/*  border-bottom: none;  !*at will*!*/
+/*  !* ... something else here ... *!*/
+/*}*/

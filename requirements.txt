@@ -1,11 +1,5 @@
 asgiref
-beautifulsoup4
-croniter
 Django
-django-crispy-forms
-django-cron
-django-crontab
-document
 mysqlclient
 null
 password
