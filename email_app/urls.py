@@ -8,7 +8,7 @@ from .views.csv_views import CsvFileView
 from .views.schedule_views import ScheduleViews, ScheduleUpdateView, ScheduleDetailView, ScheduleDeleteView, ScheduleListView, ScheduleCreated
 from django.urls import path
 
-from .views.tracking import email_seen, TrackedRecipientListView, TrackedRecipientDetailView, TrackedRecipientDeleteView, email_seen_
+from .views.tracking import email_seen, TrackedRecipientListView, TrackedRecipientDetailView, TrackedRecipientDeleteView, email_seen_, test2
 
 urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),
@@ -75,6 +75,7 @@ urlpatterns = [
     path('te/', mail_schedule, name='mail_schedule'),
     path('admin/email/tracking/<int:r_id>/<int:e_id>', email_seen, name="email_seen"),
     path('admin/email/tracking_/<str:r_email>/<int:e_id>', email_seen_, name="email_seen"),
+    path('test/', test2, name="test2"),
 
     path('account/login/', auth_view.LoginView.as_view(template_name='email_app/account/login.html', authentication_form=LoginForm), name='login'),
     path('account/logout/', auth_view.LogoutView.as_view(next_page='login'), name='logout'),

@@ -1,5 +1,6 @@
 import os
 from django.http import HttpResponse
+from django.shortcuts import render
 from django.utils.timezone import now
 from django.views.generic import ListView, DetailView, DeleteView
 from email_app.models import Email, Recipient, TrackedRecipients
@@ -13,7 +14,7 @@ def email_seen(request, r_id, e_id):
 
     print(os.path.dirname(os.path.abspath(__file__)) + "/res/")
     with open(os.path.dirname(os.path.abspath(__file__)) + "/res/1.png", "rb") as f:
-        return HttpResponse(f.read(), content_type="image/png")
+        return HttpResponse(f.read(), content_type="image/png", status=200)
 
 
 def email_seen_(request, r_email, e_id):
@@ -42,3 +43,7 @@ class TrackedRecipientDeleteView(DeleteView):
     model = TrackedRecipients
     template_name = 'email_app/tracking/tracked_recipient_delete.html'
     success_url = '/admin/tracked/recipients/'
+
+
+def test2(request):
+    return render(request, "email_app/tracking/test.html")
